@@ -1,29 +1,30 @@
 # PROYECTO-AGRICOLA-CLOUD
-Integrantes:
+**Integrantes:**
 Mellado Champi, Jean Franco 
 Champi Palacios, Jose
 Molina Loaiza, Ariana
-Descripcion Breve:
+
+**Descripcion Breve:**
 El proyecto consiste en desarrollar una plataforma digital que permita conectar a pequeños productores agrícolas de la región Cusco con compradores interesados en adquirir productos directamente, facilitando la publicación de productos, consulta de precios, disponibilidad, gestión de pedidos y coordinación de entregas.
 
-#Contexto geográfico:
+**#Contexto geográfico:**
 El proyecto se plantea inicialmente para la región Cusco, Perú, considerando zonas con actividad agrícola y pequeños productores que comercializan sus cosechas en mercados locales, ferias, centros de abasto y mediante compradores intermediarios.
 
 Se puede tomar como ámbito inicial de estudio las zonas productoras de las provincias de Anta, Calca, Urubamba y Quispicanchi. La selección definitiva dependerá de dónde se pueda realizar el diagnóstico y contactar a productores reales.
 
-#Problemática identificada:
+**#Problemática identificada:**
 Los pequeños productores agrícolas pueden enfrentar dificultades para comercializar sus productos debido a la limitada conexión con compradores, la dependencia de canales tradicionales de venta y la falta de herramientas digitales que les permitan mostrar su oferta agrícola de manera organizada.
 
 En muchos casos, la comercialización se realiza mediante contactos directos, mercados locales o intermediarios. Esto puede dificultar que los productores conozcan nuevas oportunidades de venta, comparen precios y coordinen pedidos con compradores de otras localidades.
 
-#Usuarios Objetivo
+**#Usuarios Objetivo**
 -Pequeños productores
 -Asociaciones agrícolas	
 -Comerciantes mayoristas	
 -Restaurantes y negocios 
 -Comerciantes minoristas	
 
-#Propuesta de Solucion - FLUJO GENERAL DE LA SOLUCION
+**#Propuesta de Solucion - FLUJO GENERAL DE LA SOLUCION**
 1.- Registro de productores
 Los agricultores podrán crear una cuenta, registrar sus datos y asociar su ubicación o zona de producción.
 
@@ -42,7 +43,7 @@ Los productores podrán aceptar, rechazar o modificar las condiciones del pedido
 6.- Seguimiento de pedidos
 Ambas partes podrán consultar el estado de sus pedidos y mantener un registro de las operaciones realizadas.
 
-#Identificacion de Microservicios
+**#Identificacion de Microservicios**
 1. Usuarios y autenticación	
 2. Productores	
 3. Productos y catálogo	
