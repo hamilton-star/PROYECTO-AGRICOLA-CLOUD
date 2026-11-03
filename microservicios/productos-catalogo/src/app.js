@@ -12,7 +12,7 @@ app.get('/health', (req, res) => {
 app.get('/productos', async (req, res) => {
   const { categoria, provincia } = req.query;
   try {
-    let query = 'SELECT * FROM productos_agricolas_inexistente WHERE activo = true';
+    let query = 'SELECT * FROM productos WHERE activo = true';
     const params = [];
 
     if (categoria) {
