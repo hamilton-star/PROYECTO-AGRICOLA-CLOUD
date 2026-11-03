@@ -6,7 +6,7 @@ app.use(express.json());
 
 app.get('/health', (req, res) => {
   res.json({ estado: 'ok', servicio: 'compradores' });
-});
+);
 
 // Listar todos los compradores o filtrar por provincia
 app.get('/compradores', async (req, res) => {
