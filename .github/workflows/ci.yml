@@ -1,0 +1,36 @@
+name: CI - Microservicios Agricolas
+
+on:
+  push:
+    branches: [ main, jchampi/microservicios ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-microservicios:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar codigo del repositorio
+        uses: actions/checkout@v4
+
+      - name: Levantar microservicios con Docker Compose
+        run: docker compose up -d --build
+        working-directory: microservicios
+
+      - name: Ejecutar pruebas unitarias en Compradores
+        run: docker compose exec -T compradores-app npm test
+        working-directory: microservicios
+
+      - name: Ejecutar pruebas unitarias en Productos Catalogo
+        run: docker compose exec -T productos-app npm test
+        working-directory: microservicios
+
+      - name: Mostrar registros si ocurre un fallo
+        if: failure()
+        run: docker compose logs
+        working-directory: microservicios
+
+      - name: Limpiar contenedores y volumenes
+        if: always()
+        run: docker compose down -v
+        working-directory: microservicios
