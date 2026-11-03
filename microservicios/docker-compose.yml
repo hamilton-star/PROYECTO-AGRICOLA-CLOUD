@@ -1,0 +1,68 @@
+services:
+  compradores-db:
+    image: postgres:16-alpine
+    container_name: compradores-db
+    environment:
+      POSTGRES_DB: compradores_db
+      POSTGRES_USER: compradores_user
+      POSTGRES_PASSWORD: compradores123
+    volumes:
+      - compradores_pgdata:/var/lib/postgresql/data
+      - ./compradores/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U compradores_user -d compradores_db"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  compradores-app:
+    build: ./compradores
+    container_name: compradores-app
+    ports:
+      - "3011:3001"
+    environment:
+      PORT: 3001
+      DB_HOST: compradores-db
+      DB_PORT: 5432
+      DB_NAME: compradores_db
+      DB_USER: compradores_user
+      DB_PASSWORD: compradores123
+    depends_on:
+      compradores-db:
+        condition: service_healthy
+
+  productos-db:
+    image: postgres:16-alpine
+    container_name: productos-db
+    environment:
+      POSTGRES_DB: productos_db
+      POSTGRES_USER: productos_user
+      POSTGRES_PASSWORD: productos123
+    volumes:
+      - productos_pgdata:/var/lib/postgresql/data
+      - ./productos-catalogo/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U productos_user -d productos_db"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+
+  productos-app:
+    build: ./productos-catalogo
+    container_name: productos-app
+    ports:
+      - "3012:3002"
+    environment:
+      PORT: 3002
+      DB_HOST: productos-db
+      DB_PORT: 5432
+      DB_NAME: productos_db
+      DB_USER: productos_user
+      DB_PASSWORD: productos123
+    depends_on:
+      productos-db:
+        condition: service_healthy
+
+volumes:
+  compradores_pgdata:
+  productos_pgdata:
