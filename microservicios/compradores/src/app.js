@@ -12,7 +12,7 @@ app.get('/health', (req, res) => {
 app.get('/compradores', async (req, res) => {
   const { provincia } = req.query;
   try {
-    let query = 'SELECT * FROM compradores_peru';
+    let query = 'SELECT * FROM compradores';
     const params = [];
     if (provincia) {
       query += ' WHERE LOWER(provincia) = LOWER($1)';
@@ -29,7 +29,7 @@ app.get('/compradores', async (req, res) => {
 // Obtener comprador por ID
 app.get('/compradores/:id', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM compradores_peru WHERE id = $1', [req.params.id]);
+    const result = await pool.query('SELECT * FROM compradores WHERE id = $1', [req.params.id]);
     if (result.rowCount === 0) {
       return res.status(404).json({ error: 'Comprador no encontrado' });
     }
