@@ -95,9 +95,41 @@ services:
       timeout: 5s
       retries: 10
 
+  productores-app:
+    build: ./productores
+    container_name: productores-app
+    ports:
+      - "3004:3004"
+    environment:
+      PORT: 3004
+      DB_HOST: productores-db
+      DB_PORT: 5432
+      DB_NAME: productores_db
+      DB_USER: productores_user
+      DB_PASSWORD: productores123
+    depends_on:
+      productores-db:
+        condition: service_healthy
+
+  productores-db:
+    image: postgres:16
+    container_name: productores-db
+    environment:
+      POSTGRES_DB: productores_db
+      POSTGRES_USER: productores_user
+      POSTGRES_PASSWORD: productores123
+    volumes:
+      - productores_pgdata:/var/lib/postgresql/data
+      - ./productores/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U productores_user -d productores_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 
 volumes:
   compradores_pgdata:
   productos_pgdata:
   usuarios_pgdata:
+  productores_pgdata:
