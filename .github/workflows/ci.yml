@@ -2,7 +2,7 @@ name: CI - Microservicios Agricolas
 
 on:
   push:
-    branches: [ main, jchampi/microservicios, JeanFrancoMCH/microservicios ]
+    branches: [ main, jchampi/microservicios, JeanFrancoMCH ]
   pull_request:
     branches: [ main ]
 
