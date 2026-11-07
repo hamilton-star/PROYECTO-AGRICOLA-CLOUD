@@ -25,7 +25,7 @@ test('GET /usuarios/1 debe devolver un usuario existente', async () => {
     const response = await request(app).get('/usuarios/1');
 
     expect(response.statusCode).toBe(200);
-    expect(response.body.id_usuario).toBe(1);
+    expect(response.body.id).toBe(1);
 });
 
 test('GET /usuarios/9999 debe responder 404', async () => {
