@@ -2,7 +2,7 @@ name: CI - Microservicios Agricolas
 
 on:
   push:
-    branches: [ main, jchampi/microservicios ]
+    branches: [ main, jchampi/microservicios, JeanFrancoMCH ]
   pull_request:
     branches: [ main ]
 
@@ -25,6 +25,22 @@ jobs:
         run: docker compose exec -T productos-app npm test
         working-directory: microservicios
 
+      - name: Ejecutar pruebas de Datos hacia Usuarios
+        run: curl http://localhost:3003/usuarios
+        working-directory: microservicios
+
+      - name: Ejecutar pruebas de Datos hacia Productores
+        run: curl http://localhost:3004/productores
+        working-directory: microservicios
+
+      - name: Ejecutar pruebas unitarias en Usuarios
+        run: docker compose exec -T usuarios-app npm test
+        working-directory: microservicios
+
+      - name: Ejecutar pruebas unitarias en Productores
+        run: docker compose exec -T productores-app npm test
+        working-directory: microservicios
+
       - name: Mostrar registros si ocurre un fallo
         if: failure()
         run: docker compose logs
@@ -34,3 +50,11 @@ jobs:
         if: always()
         run: docker compose down -v
         working-directory: microservicios
+
+
+
+
+
+
+
+
