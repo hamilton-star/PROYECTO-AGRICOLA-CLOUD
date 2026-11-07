@@ -12,3 +12,5 @@ INSERT INTO productores (id_productor, nombre_finca, ubicacion, principal_cultiv
 (3, 'Cítricos de la Convención', 'Quillabamba, Cusco', 'Cítricos / Café', TRUE),
 (4, 'Granja Andina Písac', 'Písac, Cusco', 'Hortalizas', TRUE),
 (5, 'Producciones Chinchero', 'Chinchero, Cusco', 'Quinua Orgánica', TRUE);
+
+SELECT setval(pg_get_serial_sequence('productores', 'id_productor'), (SELECT MAX(id_productor) FROM productores));
