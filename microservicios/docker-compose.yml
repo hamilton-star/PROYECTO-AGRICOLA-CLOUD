@@ -59,6 +59,8 @@ services:
       DB_NAME: productos_db
       DB_USER: productos_user
       DB_PASSWORD: productos123
+      PRODUCTORES_URL: http://productores-app:3004
+      USUARIOS_URL: http://usuarios-app:3003
     depends_on:
       productos-db:
         condition: service_healthy
