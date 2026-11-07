@@ -31,5 +31,5 @@ test('GET /productores/9999 debe responder 404', async () => {
     const response = await request(app).get('/productores/9999');
 
     expect(response.statusCode).toBe(404);
-    expect(response.body.error).toBe('productores no encontrado');
+    expect(response.body.error).toBe('Productor no encontrado');
 });
